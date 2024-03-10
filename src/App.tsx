@@ -1,4 +1,3 @@
-import React from 'react';
 import './style/index.css';
 import './style/base.css';
 import { Layout } from './layout/Layout';
@@ -11,7 +10,6 @@ import {
 const queryClient = new QueryClient()
 
 function App() {
-
   const loadResource = (pageNumber:number) => {
     return fetch(
       `https://demo.api.agreena.com/api/public/carbon_registry/v1/certificates?includeMeta=true&page=${pageNumber}&limit=10`,
@@ -42,7 +40,6 @@ function App() {
       }
     }
   )()
-  
   }
   return (
     <QueryClientProvider client={queryClient}>

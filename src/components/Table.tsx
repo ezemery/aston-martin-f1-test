@@ -1,4 +1,6 @@
- import {Response} from './types/response'
+import {useState} from 'react'
+import {Response} from './types/response'
+
 
   type listData = {
     isPending:boolean, 
@@ -15,15 +17,27 @@
     toggleFavorite: (id: string) => void; 
     toggleClipboard: (id: string) => void; 
   }
-
+  
+  type favouriteType = {
+    [key: string]:boolean
+  }
   export const Table = ({listData, toggleFavorite, toggleClipboard} : TableData) => {
    
     const {isPending, isError, isFetching, isSuccess, setPageNumber, pageNumber, isPlaceholderData, data} =  listData;
-    // const {result} = data;
-    console.log(data, pageNumber, isPlaceholderData)
+    const [favorite, setFavorite] = useState<favouriteType>({});
+    
     const toggleFavoriteEvent = (id:string) => {
+      if(favorite[id]){
+        const newFavourite = favorite
+        delete newFavourite[id]
+        setFavorite((prev)=>({...newFavourite}))
+      }else{
+        setFavorite((prev)=>({...prev, [id]:true}))
+      }
       toggleFavorite(id);
     }
+
+    console.log(data, pageNumber, favorite)
 
     const toggleClipboardEvent = (id:string) => {
       toggleClipboard(id);
@@ -66,7 +80,7 @@
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{val.countryCode}</td>
                       <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{val.status}</td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill={localStorage.getItem(val.uniqueNumber) ? "currentColor": "none" } viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" onClick ={() => toggleFavoriteEvent(val.uniqueNumber)}>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill={ favorite[val.uniqueNumber] ? "currentColor": "none" } viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6" onClick ={() => toggleFavoriteEvent(val.uniqueNumber)}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0 1 11.186 0Z" />
                       </svg>
                       </td>
