@@ -1,17 +1,6 @@
 import {useState} from 'react'
-import {Response} from './types/response'
+import {listData} from '../layout/Layout'
 
-
-  type listData = {
-    isPending:boolean, 
-    isError:boolean, 
-    isSuccess:boolean, 
-    isFetching:boolean,
-    setPageNumber: React.Dispatch<React.SetStateAction<number>>,
-    pageNumber: number,
-    isPlaceholderData: boolean,
-    data:Response
-  }
   type TableData = {
     listData: listData,
     toggleFavorite: (id: string) => void; 

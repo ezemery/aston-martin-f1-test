@@ -1,13 +1,24 @@
 import {useState, useEffect} from 'react'
+import {Response} from '../types/response'
 import {
     useQuery,
     keepPreviousData,
     useQueryClient,
   } from '@tanstack/react-query'
 
+export type listData = {
+    isPending:boolean, 
+    isError:boolean, 
+    isSuccess:boolean, 
+    isFetching:boolean,
+    setPageNumber: React.Dispatch<React.SetStateAction<number>>,
+    pageNumber: number,
+    isPlaceholderData: boolean,
+    data:Response
+}
 type LayoutProps = {
     getData : (pageNumber: number) => Promise<any>,
-    render : (data:any) => React.JSX.Element
+    render : (data:listData) => React.JSX.Element
 }
 
 
