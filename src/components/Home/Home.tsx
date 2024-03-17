@@ -41,7 +41,7 @@ export default function Home() {
           <div className="hidden sm:mb-8 sm:flex sm:justify-center">
             <div className="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-400 ring-1 ring-white/10 hover:ring-white/20">
               All the formula 1 data you need.{" "}
-              <Link to="/race" className="font-semibold text-white">
+              <Link to="/search/race" className="font-semibold text-white">
                 <span className="absolute inset-0" aria-hidden="true" />
                 Get Started<span aria-hidden="true">&rarr;</span>
               </Link>
@@ -56,13 +56,13 @@ export default function Home() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
-                to="/race"
+                to="/search/race"
                 className="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400"
               >
                 Get started
               </Link>
               <a
-                href="/race"
+                href="/search/race"
                 className="text-sm font-semibold leading-6 text-white"
               >
                 Learn more <span aria-hidden="true">→</span>

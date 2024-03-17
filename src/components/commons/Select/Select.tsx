@@ -1,11 +1,4 @@
-import { Dispatch, Fragment, SetStateAction, forwardRef, useState } from "react";
-import { Listbox, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
-import {SelectEventType} from "../../../types/selectevent"
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import { Dispatch, SetStateAction, forwardRef, useState } from "react";
 
 type SelectTypes = {
   data: any;
@@ -16,7 +9,6 @@ type SelectTypes = {
 
 export const Select = forwardRef(({ data, label, value, fireEventChange }: SelectTypes, ref:React.LegacyRef<HTMLSelectElement>) =>  {
   const [selected, setSelected] = useState(data[0]);
-  console.log(data)
   const changeListData = (e:any) => {
     if(label === "label"){
       fireEventChange(e.value)
@@ -31,7 +23,7 @@ export const Select = forwardRef(({ data, label, value, fireEventChange }: Selec
   return (
     <>
     <select
-      id="event-selector"
+      role="select"
       className="block w-full p-2 bg-gray-800 text-white rounded-md"
       onChange={changeListData}
       ref={ref}

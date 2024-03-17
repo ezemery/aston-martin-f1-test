@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor  } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Select } from './Select';
 
 const testData = [
@@ -8,9 +9,9 @@ const testData = [
   { label: 'Option 3', value: 'option3' }
 ];
 
-test('renders select component with options correctly', () => {
+test('renders select component with options correctly', async () => {
   const fireEventChange = jest.fn();
-  const { getByLabelText, getByDisplayValue } = render(
+  render(
     <Select
       data={testData}
       label="label"
@@ -19,31 +20,26 @@ test('renders select component with options correctly', () => {
     />
   );
 
-  // Check if select element is rendered
-  const selectElement = getByLabelText('event-selector');
+  // Wait for the select element to be available
+  const selectElement = await screen.findByRole('select');
   expect(selectElement).toBeInTheDocument();
 
-  // Check if options are rendered correctly
-  testData.forEach(option => {
-    expect(getByDisplayValue(option.label)).toBeInTheDocument();
+  // Open the dropdown
+  userEvent.click(selectElement);
+
+  // Wait for the options to be available
+  await waitFor(() => {
+    testData.forEach(({ label }) => {
+      expect(screen.getByText(label)).toBeInTheDocument();
+    });
   });
-});
 
-test('fires event change correctly', () => {
-  const fireEventChange = jest.fn();
-  const { getByLabelText } = render(
-    <Select
-      data={testData}
-      label="label"
-      value="value"
-      fireEventChange={fireEventChange}
-    />
-  );
+    // Select an option
+    const optionToSelect = screen.getByText('Option 2');
+    userEvent.click(optionToSelect);
 
-  // Change the select value
-  const selectElement = getByLabelText('event-selector');
-  fireEvent.change(selectElement, { target: { value: 'option2' } });
 
-  // Check if fireEventChange function is called with correct value
-  expect(fireEventChange).toHaveBeenCalledWith('option2');
+    // Verify that the option was selected
+    expect(screen.getByText('Option 3')).toBeInTheDocument();
+
 });

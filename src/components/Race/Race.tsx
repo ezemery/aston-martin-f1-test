@@ -2,9 +2,10 @@ import { SyntheticEvent, useRef } from "react";
 import { ListData } from "../../types/dataprops";
 import Nav from "../Nav/Nav";
 import { Select } from "../commons/Select/Select";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Race({ renderData }: { renderData: ListData }) {
+  const { url } = useParams<string>();
   console.log(renderData);
   const yearRef = useRef<HTMLSelectElement>(null);
   const circuitRef = useRef<HTMLSelectElement>(null);
@@ -13,9 +14,16 @@ export default function Race({ renderData }: { renderData: ListData }) {
   const submitForm = (e: SyntheticEvent) => {
     e.preventDefault();
 
-    navigate(
-      `/search/race/${yearRef.current?.value}/${circuitRef.current?.value}`
-    );
+    if(url == "race"){
+      navigate(
+        `/search/race/${yearRef.current?.value}/${circuitRef.current?.value}`
+      );
+    }else{
+      navigate(
+        `/search/laps/${yearRef.current?.value}/${circuitRef.current?.value}`
+      );
+    }
+    
   };
 
   return (

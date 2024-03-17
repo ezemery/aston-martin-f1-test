@@ -6,9 +6,7 @@ import "./style/base.css";
 import { Layout } from "./components/Layout/Layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Home from "./components/Home/Home";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Laps from "./components/Laps/Laps";
 import SearchRace from "./components/SearchRace/SearchRace";
 import Race from "./components/Race/Race";
 import ErrorPage from "./components/Error/ErrorPage";
@@ -23,13 +21,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
   },
   {
-    path: "/race",
+    path: "/search/:url",
     element: <Layout render={(data) => <Race renderData={data} />} />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/laps",
-    element: <Layout render={(data) => <Laps renderData={data} />} />,
     errorElement: <ErrorPage />,
   },
   {

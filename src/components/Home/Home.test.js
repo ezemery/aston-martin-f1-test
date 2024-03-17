@@ -12,7 +12,7 @@ test('renders home component with proper content', () => {
 
   // Check for content
   expect(getByText('All the formula 1 data you need.')).toBeInTheDocument();
-  expect(getByText('Get Started')).toHaveAttribute('href', '/race');
+  expect(getByText('Get Started')).toHaveAttribute('href', '/search/race');
   expect(getByText('Data to enrich decisions')).toBeInTheDocument();
   expect(getByText('We use reliable data sources from all race events since 1950')).toBeInTheDocument();
   expect(getByText('Get started')).toBeInTheDocument();
@@ -27,6 +27,6 @@ test('renders home component with proper links', () => {
   );
 
   // Check links
-  expect(getByText('Get Started')).toHaveAttribute('href', '/race');
-  expect(getByText('Learn more')).toHaveAttribute('href', '/race');
+  expect(getByText('Get Started')).toHaveAttribute('href', '/search/race');
+  expect(getByText('Learn more')).toHaveAttribute('href', '/search/race');
 });

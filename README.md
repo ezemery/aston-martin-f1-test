@@ -1,42 +1,47 @@
-# Formula 1 Race Data
+# Formula 1 Race Visualizer Web App
 
+This web application is built to consume data from the Ergast API ([http://ergast.com/mrd/](http://ergast.com/mrd/)), which provides lap timing and related data for Formula 1 races. The goal of this project is to create a robust, maintainable, and accurate solution that allows users to select a specific race event and visualize the race data in an interactive and informative manner.
 
+## Features
 
+- Allows users to select a specific Formula 1 race event.
+- Presents visualizations to help users understand what happened during the race.
+- Communicates race data visually in an interactive tool.
+- Provides levels of detail to enhance the user's understanding of the race.
 
-# About the project 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-and uses the following technologies
+## Technologies Used
 
+- TypeScript: Ensures type safety and improves code quality.
+- React: Provides a modern and efficient framework for building user interfaces.
+- Tailwind CSS: Allows for rapid styling and customization.
+- Jest and React Testing Library: Ensures robustness through comprehensive testing.
+- Docker: Enables easy deployment and scalability of the application.
 
-# How to run the project 
+## Getting Started
 
-## Using Docker 
+### Prerequisites
 
+Before running the application, make sure you have the following installed:
 
-## Using npm 
+- Node.js and npm (or yarn) ([Download Node.js](https://nodejs.org/))
+- Docker ([Download Docker](https://www.docker.com/))
 
-In the project directory, you can run:
+### Running the App
 
-### `npm start`
+Using Create React App
+To run the application using Create React App's development server:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+` npm start` or `yarn start `
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Open [localhost:3000](http://localhost:3000)in your browser to view the app.
 
-### `npm test`
+Using Docker
+To run the application in a Docker container:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```
+docker build -t formula1-race-visualizer .
+docker run -p 8080:80 formula1-race-visualizer
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+Open [localhost:8080](http://localhost:8080) in your browser to view the app.
 

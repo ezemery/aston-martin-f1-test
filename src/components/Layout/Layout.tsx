@@ -12,15 +12,19 @@ type LayoutProps = {
 };
 
 const loadResource = (season: string) => {
-  console.log("calling api", season);
   return fetch(`https://ergast.com/api/f1/${season}.json`).then(
-    (res) => res.json()
+    (res) => {
+      if (!res.ok) {
+        throw new Error('Network response was not ok')
+      }
+      return res.json()
+    }
   );
-};
+
+  }
 
 export const Layout = ({ render }: LayoutProps) => {
   const queryClient = useQueryClient();
-  console.log(RACEYEARS)
   const [season, setSeason] = useState<string>(String(RACEYEARS[0].value));
   const [circuit, setCircuit] = useState<string>("");
 

@@ -3,8 +3,8 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 const navigation = [
-  { name: "Search Race", href: "/race" },
-  { name: "Laps Information", href: "/laps" },
+  { name: "Search Race", href: "/search/race" },
+  { name: "Laps Information", href: "/search/laps" },
   
 ];
 
@@ -19,7 +19,7 @@ export default function Nav() {
         >
           <div className="flex lg:flex-1">
             <Link to="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">Company</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"

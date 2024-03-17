@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { ListData } from "../../types/dataprops";
 import { useQuery } from "@tanstack/react-query";
 import Nav from "../Nav/Nav";
+import { Chart } from "../commons/Chart/Chart";
 
 type ResultType = {
   [key: string]: any;
@@ -16,7 +17,14 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
   ) => {
     return fetch(
       `http://ergast.com/api/f1/${year}/${circuit}/results.json`
-    ).then((res) => res.json());
+    ).then(
+      (res) =>{
+        if (!res.ok) {
+          throw new Error('Network response was not ok')
+        }
+        return res.json()
+      }
+      );
   };
 
   
@@ -72,17 +80,16 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
                             }
                           </h1>
                           <p className="mt-2 text-sm text-gray-300">
-                            A list of all the users in your account including
-                            their name, title, email and role.
+                            Check race results, points and teams
                           </p>
                         </div>
                         <div className="sm:mt-4 sm:flex-none">
-                          <button
-                            type="button"
+                          <Link
+                           to={`/search/laps/${year}/${circuit}`}
                             className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                           >
                             Get results for laps
-                          </button>
+                          </Link>
                         </div>
                       </div>
                     )}
