@@ -1,4 +1,4 @@
-import { ErrorResponse, useRouteError } from "react-router-dom";
+import { useRouteError } from "react-router-dom";
 import Nav from "../Nav/Nav";
 
 export default function ErrorPage() {

@@ -39,9 +39,8 @@ Using Docker
 To run the application in a Docker container:
 
 ```
-docker build -t formula1-race-visualizer .
+docker build -t formula1-race-visualizer --progress=plain . &> build.log
 docker run -p 8080:80 formula1-race-visualizer
-
 ```
 Open [localhost:8080](http://localhost:8080) in your browser to view the app.
 

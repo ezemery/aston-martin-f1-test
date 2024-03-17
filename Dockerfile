@@ -1,26 +1,30 @@
-# Use official Node.js image as base
-FROM node:latest AS builder
+FROM node:18-alpine AS base
 
-# Set working directory
+# Install dependencies only when needed
+FROM base AS deps
 WORKDIR /app
 
 # Copy package.json and package-lock.json
 COPY package.json package-lock.json ./
 
+# Update the npm package
+RUN apk update && apk add npm
 # Install dependencies
-RUN npm install
+RUN npm i
 
-# Copy the rest of the application
+
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-# Build the application
 RUN npm run build
 
 # Stage for running tests
 FROM builder AS test
 
 # Run tests
-RUN npm test
+RUN npm run test
 
 # Stage for serving the built application
 FROM nginx:alpine AS serve
