@@ -16,7 +16,7 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
     circuit: string | undefined
   ) => {
     return fetch(
-      `http://ergast.com/api/f1/${year}/${circuit}/results.json`
+      `https://ergast.com/api/f1/${year}/${circuit}/results.json`
     ).then(
       (res) =>{
         if (!res.ok) {

@@ -10,7 +10,7 @@ export default function SearchLaps({ renderData }: {
   }){
 
     const loadResource = (year: string | undefined, circuit: string | undefined) => {
-      return fetch(`http://ergast.com/api/f1/${year}/${circuit}/laps.json?limit=1000`).then(
+      return fetch(`https://ergast.com/api/f1/${year}/${circuit}/laps.json?limit=1000`).then(
         (res) => res.json()
       );
     };
