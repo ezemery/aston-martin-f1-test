@@ -30,7 +30,6 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
     queryFn: () => loadResource(year, circuit),
   });
 
-  console.log("resultQuery", resultQuery);
   return (
     <>
       <div>
@@ -44,7 +43,7 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
             relative 
             isolate 
             overflow-hidden 
-            pt-14 
+            pt-8 
             bg-cover 
             bg-no-repeat 
             bg-center
@@ -60,7 +59,7 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
         >
           <div className="bg-gray-900">
             <div className="mx-auto max-w-7xl">
-              <div className="bg-gray-900 py-10">
+              <div className="bg-gray-900">
                 {!resultQuery.isFetching && (
                   <div className="sm:flex flex-col p-10">
                     {resultQuery.data.MRData.RaceTable.Races.length <= 0 ? (
@@ -101,9 +100,9 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
                     )}
 
                     <div className="mt-8 flow-root">
-                      <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                        <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                          <table className="min-w-full divide-y divide-gray-700">
+                      <div className="-mx-4 -my-2 sm:-mx-6 lg:-mx-8">
+                        <div className="inline-block overflow-x py-2 align-middle sm:px-6 lg:px-8">
+                          <table className="w-full divide-y divide-gray-700">
                             <thead>
                               <tr>
                                 <th

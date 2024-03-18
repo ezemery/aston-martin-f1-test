@@ -21,7 +21,6 @@ export default function SearchLaps({ renderData }: {
       queryFn: () => loadResource(year, circuit),
     });
 
-    console.log("resultQuery", resultQuery)
     return (
       <>
       <div>
@@ -35,7 +34,7 @@ export default function SearchLaps({ renderData }: {
             relative 
             isolate 
             overflow-hidden 
-            pt-14 
+            pt-8 
             bg-cover 
             bg-no-repeat 
             bg-center
@@ -51,7 +50,7 @@ export default function SearchLaps({ renderData }: {
         >
           <div className="bg-gray-900">
             <div className="mx-auto max-w-7xl">
-              <div className="bg-gray-900 py-10">
+              <div className="bg-gray-900">
                 {!resultQuery.isFetching && (
                   <div className="sm:flex flex-col p-10">
                     {resultQuery.data.MRData.RaceTable.Races.length <= 0 ? (
@@ -61,11 +60,20 @@ export default function SearchLaps({ renderData }: {
                     ) : (
                       <div className="sm:flex-auto">
                         <div>
+                         <h1 className="text-base font-semibold leading-6 text-white">
+                            {`
+                              Circuit Name: ${resultQuery.data.MRData.RaceTable.Races[0].Circuit.circuitName} 
+                            `}
+                          </h1>
                           <h1 className="text-base font-semibold leading-6 text-white">
-                            {
-                              resultQuery.data.MRData.RaceTable.Races[0].Circuit
-                                .circuitName
-                            }
+                            {`
+                              Country: ${resultQuery.data.MRData.RaceTable.Races[0].Circuit.Location.country}   
+                            `}
+                          </h1>
+                          <h1 className="text-base font-semibold leading-6 text-white">
+                            {`
+                              Locality: ${resultQuery.data.MRData.RaceTable.Races[0].Circuit.Location.locality}
+                            `}
                           </h1>
                           <p className="mt-2 text-sm text-gray-300">
                             Check winners for each laps and the time between lap leader and other racers by sliding the slider below
