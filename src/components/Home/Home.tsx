@@ -8,21 +8,25 @@ export default function Home() {
     <Nav/>
       <div
         className="
-            relative 
-            isolate 
-            overflow-hidden 
-            pt-14 
-            bg-cover 
-            bg-no-repeat 
-            bg-center
-            bg-[url('https://images.pexels.com/photos/12989709/pexels-photo-12989709.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]
-            before:content-['']
-            before:absolute
-            before:inset-0
-            before:block
-            before:bg-neutral-900
-            before:opacity-80
-            before:z-[-5]
+        flex 
+        items-center 
+        justify-center 
+        min-h-screen 
+        relative 
+        isolate 
+        overflow-hidden 
+        pt-14 
+        bg-cover 
+        bg-no-repeat 
+        bg-center
+        bg-[url('https://images.pexels.com/photos/12989709/pexels-photo-12989709.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')]
+        before:content-['']
+        before:absolute
+        before:inset-0
+        before:block
+        before:bg-neutral-900
+        before:opacity-80
+        before:z-[-5]
       "
       >
         <div

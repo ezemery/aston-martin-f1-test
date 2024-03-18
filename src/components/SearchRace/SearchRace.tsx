@@ -10,24 +10,21 @@ type ResultType = {
 
 export default function SearchRace({ renderData }: { renderData: ListData }) {
   const { year, circuit } = useParams<string>();
-  
+
   const loadResource = (
     year: string | undefined,
     circuit: string | undefined
   ) => {
     return fetch(
       `https://ergast.com/api/f1/${year}/${circuit}/results.json`
-    ).then(
-      (res) =>{
-        if (!res.ok) {
-          throw new Error('Network response was not ok')
-        }
-        return res.json()
+    ).then((res) => {
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
       }
-      );
+      return res.json();
+    });
   };
 
-  
   const resultQuery = useQuery({
     queryKey: ["f1-result"],
     queryFn: () => loadResource(year, circuit),
@@ -74,10 +71,19 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
                       <div className="sm:flex-auto">
                         <div>
                           <h1 className="text-base font-semibold leading-6 text-white">
-                            {
-                              resultQuery.data.MRData.RaceTable.Races[0].Circuit
-                                .circuitName
-                            }
+                            {`
+                              Circuit Name: ${resultQuery.data.MRData.RaceTable.Races[0].Circuit.circuitName} 
+                            `}
+                          </h1>
+                          <h1 className="text-base font-semibold leading-6 text-white">
+                            {`
+                              Country: ${resultQuery.data.MRData.RaceTable.Races[0].Circuit.Location.country}   
+                            `}
+                          </h1>
+                          <h1 className="text-base font-semibold leading-6 text-white">
+                            {`
+                              Locality: ${resultQuery.data.MRData.RaceTable.Races[0].Circuit.Location.locality}
+                            `}
                           </h1>
                           <p className="mt-2 text-sm text-gray-300">
                             Check race results, points and teams
@@ -85,7 +91,7 @@ export default function SearchRace({ renderData }: { renderData: ListData }) {
                         </div>
                         <div className="sm:mt-4 sm:flex-none">
                           <Link
-                           to={`/search/laps/${year}/${circuit}`}
+                            to={`/search/laps/${year}/${circuit}`}
                             className="block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                           >
                             Get results for laps
