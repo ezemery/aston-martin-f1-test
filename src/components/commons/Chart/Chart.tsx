@@ -72,7 +72,7 @@ export const Chart = ({ data }: { data: ChartData }) => {
       .select("#slider")
       .append("input")
       .attr("type", "range")
-      .attr("min", 1)
+      .attr("min", -1)
       .attr("max", 50)
       .attr("value", 1)
       .style("width", width + "px")
@@ -162,10 +162,11 @@ export const Chart = ({ data }: { data: ChartData }) => {
     svg.append("g").style("color", "white").call(yAxis);
 
     function update(data: Timing[][], index: number) {
+      console.log(index, data[index])
       const t = d3.transition().duration(100);
       yScale.domain([
         0,
-        d3.max(formattedData[0].map((d) => d.timeToLeader)) as number,
+        d3.max(data[index].map((d) => d.timeToLeader)) as number,
       ]);
 
       // JOIN new data with old elements.
@@ -186,7 +187,7 @@ export const Chart = ({ data }: { data: ChartData }) => {
         .attr("class", "datapoint")
         .attr("x", (d) => xScale(d.position) as number)
         .attr("y", (d) => yScale(d.timeToLeader) as number)
-        .attr("text-anchor", "middle")
+        .attr("text-anchor", "start")
         .text((d) => d.driverId)
         .style("font-size", "10px")
         .attr("fill", (d) => driverColor(d.driverId));
