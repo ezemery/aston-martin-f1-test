@@ -1,10 +1,14 @@
 import { Link } from "react-router-dom";
 import Nav from "../Nav/Nav";
+import {useMousePosition} from '../track-mouse';
 
 
 export default function Home() {
+  const position = useMousePosition()
   return (
     <div className="bg-gray-900">
+    {/* <div className="bg-white">{`Showing the mouse position x ${position.x} and y ${position.y}`}</div> */}
+      
     <Nav/>
       <div
         className="

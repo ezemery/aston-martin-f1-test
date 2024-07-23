@@ -4,7 +4,7 @@ type raceType = {
     [key: string]:number
   }
 
-for (let i = 2023; i >= 1950; i--) {
+for (let i = 2024; i >= 1950; i--) {
   let obj:raceType = {};
   obj["label"] = i;
   obj["value"] = i;
